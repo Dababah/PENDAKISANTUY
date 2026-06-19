@@ -58,9 +58,8 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#fcfaf2]">
-      {" "}
-      {/* Menggunakan warna off-white bertema alam */}
       <Navbar />
+
       {/* Hero Section — Pembaruan Split Layout Dua Kolom */}
       <section className="relative bg-forest-800 text-white overflow-hidden py-16 md:py-24 lg:py-28">
         {/* Pola Background Grid Halus */}
@@ -112,22 +111,18 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Kolom Kanan: Showcase Logo Utama Berwujud Maket Premium */}
+            {/* Kolom Kanan: Showcase Logo PNG Transparan */}
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative group p-4">
-                {/* Efek Cahaya Latar Belakang Lingkaran */}
+                {/* Efek Cahaya Latar Belakang */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-earth-500 to-forest-500 rounded-full blur-2xl opacity-30 group-hover:opacity-40 transition-opacity duration-500" />
 
-                {/* Bingkai Lingkaran Logo Dengan Efek Hover */}
-                <div className="relative w-72 h-72 md:w-80 md:h-80 rounded-full border-4 border-white/20 bg-stone-900/10 backdrop-blur-sm p-2 shadow-2xl overflow-hidden transform hover:scale-105 hover:rotate-2 transition-all duration-300">
+                {/* Bingkai Lingkaran Logo Tanpa BG Abu-abu kaku */}
+                <div className="relative w-72 h-72 md:w-80 md:h-80 rounded-full border-4 border-white/20 p-2 shadow-2xl overflow-hidden transform hover:scale-105 hover:rotate-2 transition-all duration-300">
                   <img
-                    src="/images/logo.png" // Tempatkan berkas logo kamu di folder public/images/logo.jpg
+                    src="/images/logo.png"
                     alt="Logo PendakiSantuy"
-                    className="w-full h-full object-cover rounded-full"
-                    onError={(e) => {
-                      // Cadangan visual jika gambar belum dimasukkan ke folder public
-                      e.currentTarget.style.display = "none";
-                    }}
+                    className="w-full h-full object-contain rounded-full"
                   />
                 </div>
               </div>
@@ -149,7 +144,8 @@ export default function HomePage() {
           </svg>
         </div>
       </section>
-      {/* Keunggulan Layanan — Ditambahkan Efek Hover Interaktif */}
+
+      {/* Keunggulan Layanan */}
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -189,7 +185,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      {/* Kategori Utama — Ditambahkan Transform Skala Mikro & Transisi Aksen */}
+
+      {/* Kategori Utama */}
       <section className="py-12">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
@@ -233,7 +230,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      {/* Testimonials — Menggunakan Desain Grid Asimetris Modis */}
+
+      {/* Testimonials */}
       <section className="py-20 bg-gradient-to-b from-stone-50 to-forest-50/40 border-t border-b border-stone-200/30">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
@@ -282,6 +280,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
       {/* Bagian Call to Action Akhir */}
       <section className="py-20 bg-white relative">
         <div className="max-w-3xl mx-auto px-4 text-center space-y-6">
@@ -308,6 +307,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
       <Footer />
       <FloatingWA />
     </div>

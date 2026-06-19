@@ -16,11 +16,12 @@ export async function GET(req: NextRequest) {
       ];
     }
 
-    // Ambil data perlengkapan beserta relasi booking yang sedang berjalan/akan datang
+    // Ambil data perlengkapan menggunakan relasi 'bookingItems' yang valid sesuai schema.prisma
     const equipmentData = await prisma.equipment.findMany({
       where,
       include: {
-        items: {
+        bookingItems: {
+          // <-- DIUBAH DI SINI
           where: {
             booking: {
               status: { in: ["CONFIRMED", "ACTIVE"] },
@@ -42,7 +43,9 @@ export async function GET(req: NextRequest) {
 
     // Petakan data ke bentuk ringkas yang dipahami Frontend
     const responseData = equipmentData.map((eq) => {
-      const activeBookings = eq.items.map((item) => ({
+      // Menggunakan eq.bookingItems hasil include dari query di atas
+      const activeBookings = eq.bookingItems.map((item) => ({
+        // <-- DIUBAH DI SINI
         startDate: item.booking.startDate.toISOString().split("T")[0],
         endDate: item.booking.endDate.toISOString().split("T")[0],
         quantity: item.quantity,
