@@ -1,0 +1,58 @@
+// prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Equipment {
+  id          String   @id @default(uuid())
+  name        String
+  category    String
+  totalStock  Int
+  pricePerDay Int
+  imageUrl    String?
+  description String?
+  weight      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  bookingItems ManualBookingItem[]
+}
+
+model ManualBooking {
+  id            String        @id @default(uuid())
+  bookingCode   String        @unique
+  customerName  String
+  customerPhone String
+  startDate     DateTime
+  endDate       DateTime
+  totalPrice    Int
+  depositAmount Int
+  notes         String?
+  status        BookingStatus @default(CONFIRMED)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  items ManualBookingItem[]
+}
+
+model ManualBookingItem {
+  id          String @id @default(uuid())
+  bookingId   String
+  equipmentId String
+  quantity    Int
+
+  booking   ManualBooking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  equipment Equipment     @relation(fields: [equipmentId], references: [id])
+}
+
+enum BookingStatus {
+  CONFIRMED
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
