@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import fs from "fs/promises";
+import path from "path";
 
 export async function GET(req: NextRequest) {
   try {
@@ -16,16 +18,14 @@ export async function GET(req: NextRequest) {
       ];
     }
 
-    // Ambil data perlengkapan menggunakan relasi 'bookingItems' yang valid sesuai schema.prisma
     const equipmentData = await prisma.equipment.findMany({
       where,
       include: {
         bookingItems: {
-          // <-- DIUBAH DI SINI
           where: {
             booking: {
               status: { in: ["CONFIRMED", "ACTIVE"] },
-              endDate: { gte: new Date() }, // Masih atau akan disewa
+              endDate: { gte: new Date() },
             },
           },
           include: {
@@ -41,11 +41,8 @@ export async function GET(req: NextRequest) {
       orderBy: { category: "asc" },
     });
 
-    // Petakan data ke bentuk ringkas yang dipahami Frontend
     const responseData = equipmentData.map((eq) => {
-      // Menggunakan eq.bookingItems hasil include dari query di atas
       const activeBookings = eq.bookingItems.map((item) => ({
-        // <-- DIUBAH DI SINI
         startDate: item.booking.startDate.toISOString().split("T")[0],
         endDate: item.booking.endDate.toISOString().split("T")[0],
         quantity: item.quantity,
@@ -62,7 +59,7 @@ export async function GET(req: NextRequest) {
         weight: eq.weight,
         createdAt: eq.createdAt,
         updatedAt: eq.updatedAt,
-        activeBookings, // Dipakai frontend untuk kalkulasi stok dinamis per tanggal
+        activeBookings,
       };
     });
 
@@ -78,19 +75,59 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { name, category, totalStock, pricePerDay, description, weight } =
-      body;
+    const formData = await request.formData();
 
+    const name = formData.get("name") as string;
+    const category = formData.get("category") as string;
+    const totalStock = Number(formData.get("totalStock"));
+    const pricePerDay = Number(formData.get("pricePerDay"));
+    const description = (formData.get("description") as string) || "";
+    const weight = (formData.get("weight") as string) || "";
+    const imageFile = formData.get("image") as File | null;
+
+    let imageUrl = null;
+
+    // Proses simpan gambar ke folder lokal public/uploads
+    if (imageFile && imageFile.size > 0) {
+      const bytes = await imageFile.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+
+      // Tentukan lokasi folder tujuan (public/uploads)
+      const uploadDir = path.join(process.cwd(), "public", "uploads");
+
+      // Validasi: Bikin foldernya otomatis jika belum ada di project-mu
+      await fs.mkdir(uploadDir, { recursive: true });
+
+      // Berikan nama file unik biar tidak saling menimpa
+      const fileExtension = imageFile.name.split(".").pop();
+      const fileName = `equipment-${Date.now()}.${fileExtension}`;
+      const filePath = path.join(uploadDir, fileName);
+
+      // Tulis file biner ke local storage server
+      await fs.writeFile(filePath, buffer);
+
+      // Path inilah yang bisa diakses langsung oleh tag <img src={eq.imageUrl} /> di frontend
+      imageUrl = `/uploads/${fileName}`;
+    }
+
+    // Simpan data ke database
     const equipment = await prisma.equipment.create({
-      data: { name, category, totalStock, pricePerDay, description, weight },
+      data: {
+        name,
+        category,
+        totalStock,
+        pricePerDay,
+        description,
+        weight,
+        imageUrl,
+      },
     });
 
     return NextResponse.json(equipment, { status: 201 });
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     return NextResponse.json(
-      { error: "Failed to create equipment" },
+      { error: error.message || "Failed to create equipment" },
       { status: 500 },
     );
   }
