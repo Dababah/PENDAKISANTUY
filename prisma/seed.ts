@@ -4,7 +4,14 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log("🌱 Seeding database...");
+  console.log("🌱 Memulai proses pembersihan database...");
+
+  // 1. Bersihkan transaksi lama terlebih dahulu untuk menghindari Foreign Key Constraint Error
+  await prisma.manualBookingItem.deleteMany({});
+  await prisma.manualBooking.deleteMany({});
+  await prisma.equipment.deleteMany({});
+
+  console.log("🌱 Memasukkan data perlengkapan gunung baru...");
 
   const equipments = [
     {
@@ -12,7 +19,10 @@ async function main() {
       category: "Tenda",
       totalStock: 5,
       pricePerDay: 75000,
-      description: "Tenda dome ringan, waterproof, cocok untuk 2 orang",
+      imageUrl:
+        "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&q=80",
+      description:
+        "Tenda dome ringan, waterproof, gampang didirikan, cocok untuk 2 orang",
       weight: "2.5 kg",
     },
     {
@@ -20,7 +30,10 @@ async function main() {
       category: "Tenda",
       totalStock: 3,
       pricePerDay: 120000,
-      description: "Tenda dome luas, waterproof, cocok untuk grup 4 orang",
+      imageUrl:
+        "https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=600&q=80",
+      description:
+        "Tenda dome luas dengan teras depan, waterproof, cocok untuk grup 4 orang",
       weight: "3.8 kg",
     },
     {
@@ -28,7 +41,10 @@ async function main() {
       category: "Carrier",
       totalStock: 8,
       pricePerDay: 50000,
-      description: "Carrier besar 60L dengan frame internal, cocok untuk pendakian multi-hari",
+      imageUrl:
+        "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80",
+      description:
+        "Carrier besar 60L dengan adjustable frame internal, nyaman untuk jalur panjang",
       weight: "1.8 kg",
     },
     {
@@ -36,7 +52,10 @@ async function main() {
       category: "Carrier",
       totalStock: 6,
       pricePerDay: 35000,
-      description: "Carrier medium 40L, ideal untuk pendakian 1-2 hari",
+      imageUrl:
+        "https://images.unsplash.com/photo-1622560480654-d96214fdc887?w=600&q=80",
+      description:
+        "Carrier medium 40L, sangat ideal untuk pendakian santai atau tek-tok 1-2 hari",
       weight: "1.2 kg",
     },
     {
@@ -44,7 +63,10 @@ async function main() {
       category: "Sleeping Bag",
       totalStock: 10,
       pricePerDay: 40000,
-      description: "Sleeping bag polar, nyaman hingga -5 derajat Celsius",
+      imageUrl:
+        "https://images.unsplash.com/photo-1515621061946-eff1c2a352bd?w=600&q=80",
+      description:
+        "Sleeping bag dacron polar tebal, menjaga suhu tubuh nyaman hingga ekstrem -5°C",
       weight: "1.1 kg",
     },
     {
@@ -52,7 +74,10 @@ async function main() {
       category: "Sleeping Bag",
       totalStock: 8,
       pricePerDay: 25000,
-      description: "Sleeping bag standar untuk cuaca tidak terlalu dingin",
+      imageUrl:
+        "https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=600&q=80",
+      description:
+        "Sleeping bag standar berbahan ringan untuk cuaca gunung tropis sedang",
       weight: "0.8 kg",
     },
     {
@@ -60,7 +85,10 @@ async function main() {
       category: "Matras",
       totalStock: 12,
       pricePerDay: 15000,
-      description: "Matras foam untuk tidur, isolasi dari tanah",
+      imageUrl:
+        "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&q=80",
+      description:
+        "Matras foam gulung anti-slip untuk alas tidur dan isolasi hawa dingin tanah",
       weight: "0.4 kg",
     },
     {
@@ -68,7 +96,10 @@ async function main() {
       category: "Masak",
       totalStock: 7,
       pricePerDay: 30000,
-      description: "Kompor gas portable dengan tabung, cocok untuk memasak di gunung",
+      imageUrl:
+        "https://images.unsplash.com/photo-1595246140625-573b715d11dc?w=600&q=80",
+      description:
+        "Kompor gas portable mini dengan burner mawar penahan angin, include adapter",
       weight: "0.5 kg",
     },
     {
@@ -76,7 +107,10 @@ async function main() {
       category: "Masak",
       totalStock: 6,
       pricePerDay: 20000,
-      description: "Set peralatan masak kompak (panci, wajan, sendok)",
+      imageUrl:
+        "https://images.unsplash.com/photo-1585238342024-78d387f4a707?w=600&q=80",
+      description:
+        "Set peralatan masak alumunium kompak (panci penanak, wajan penggorengan, mangkok)",
       weight: "0.6 kg",
     },
     {
@@ -84,7 +118,10 @@ async function main() {
       category: "Aksesoris",
       totalStock: 15,
       pricePerDay: 15000,
-      description: "Senter kepala LED, tahan air, baterai tahan lama",
+      imageUrl:
+        "https://images.unsplash.com/photo-1554734867-bf3c00a49371?w=600&q=80",
+      description:
+        "Senter kepala LED super terang, water-resistant, baterai awet untuk muncak malam",
       weight: "0.1 kg",
     },
     {
@@ -92,7 +129,10 @@ async function main() {
       category: "Aksesoris",
       totalStock: 8,
       pricePerDay: 25000,
-      description: "Tongkat hiking adjustable, aluminium, 1 pasang",
+      imageUrl:
+        "https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=600&q=80",
+      description:
+        "Tongkat hiking adjustable dengan antishock, bahan aluminium alloy, isi 1 pasang",
       weight: "0.5 kg",
     },
     {
@@ -100,22 +140,28 @@ async function main() {
       category: "Aksesoris",
       totalStock: 10,
       pricePerDay: 10000,
-      description: "Penutup hujan untuk carrier, waterproof",
+      imageUrl:
+        "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&q=80",
+      description:
+        "Penutup pelindung air hujan mutlak untuk tas carrier ukuran 45L-60L",
       weight: "0.1 kg",
     },
   ];
 
+  // 2. Simpan semua data peralatan gunung
   for (const eq of equipments) {
-    await prisma.equipment.upsert({
-      where: { id: eq.name },
-      update: {},
-      create: eq,
+    await prisma.equipment.create({
+      data: eq,
     });
   }
 
-  // Create sample booking
-  const firstEquipment = await prisma.equipment.findFirst();
-  if (firstEquipment) {
+  // 3. Ambil salah satu peralatan yang sukses dibuat untuk dijadikan contoh transaksi booking
+  const sampleTent = await prisma.equipment.findFirst({
+    where: { name: "Tenda Dome 2 Orang" },
+  });
+
+  if (sampleTent) {
+    // 4. Inisialisasi data ManualBooking bawaan pertama
     await prisma.manualBooking.upsert({
       where: { bookingCode: "PS-2026-001" },
       update: {},
@@ -125,24 +171,23 @@ async function main() {
         customerPhone: "08123456789",
         startDate: new Date("2026-07-10"),
         endDate: new Date("2026-07-12"),
-        totalPrice: 300000,
-        depositAmount: 200000,
+        totalPrice: 150000,
+        depositAmount: 100000,
         status: "CONFIRMED",
+        // PERBAIKAN: Menggunakan nama argumen relasi 'items' sesuai validasi skema database
         items: {
-          create: [
-            { equipmentId: firstEquipment.id, quantity: 1 },
-          ],
+          create: [{ equipmentId: sampleTent.id, quantity: 1 }],
         },
       },
     });
   }
 
-  console.log("✅ Seed complete!");
+  console.log("✅ Proses seeding database berhasil diselesaikan!");
 }
 
 main()
   .catch((e) => {
-    console.error(e);
+    console.error("❌ Terjadi kesalahan saat seeding:", e);
     process.exit(1);
   })
   .finally(async () => {
