@@ -75,7 +75,8 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    const formData = await request.formData();
+    // Membaca data form-data menggunakan parameter 'req' yang benar
+    const formData = await req.formData();
 
     const name = formData.get("name") as string;
     const category = formData.get("category") as string;
@@ -95,7 +96,7 @@ export async function POST(req: NextRequest) {
       // Tentukan lokasi folder tujuan (public/uploads)
       const uploadDir = path.join(process.cwd(), "public", "uploads");
 
-      // Validasi: Bikin foldernya otomatis jika belum ada di project-mu
+      // Validasi: Bikin foldernya otomatis jika belum ada di project
       await fs.mkdir(uploadDir, { recursive: true });
 
       // Berikan nama file unik biar tidak saling menimpa
@@ -110,7 +111,7 @@ export async function POST(req: NextRequest) {
       imageUrl = `/uploads/${fileName}`;
     }
 
-    // Simpan data ke database
+    // Simpan data ke database melalui Prisma
     const equipment = await prisma.equipment.create({
       data: {
         name,
