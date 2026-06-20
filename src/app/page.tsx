@@ -38,28 +38,27 @@ const TESTIMONIALS = [
   },
 ];
 
-// Data Kategori Diperkaya dengan Asset Gambar Nyata & Tagline
 const PREMIUM_CATEGORIES = [
   {
     name: "Tenda",
-    desc: "Dome 2-4 orang, waterproof & double layer",
-    tag: "Ultralight",
+    desc: "Kapasitas 2-4 orang, dijamin waterproof & double layer",
+    tag: "Best Seller",
     bgGradient: "from-emerald-500/10 to-forest-600/10",
-    image: "/images/tent-cat.jpg", // Kamu bisa ganti asset gambarnya nanti
+    image: "/images/tent-cat.jpg",
     accent: "bg-emerald-500",
   },
   {
     name: "Carrier",
-    desc: "40L & 60L, ergonomis & berbagai merek",
-    tag: "Ergonomic",
+    desc: "Ukuran 40L & 60L, busa tebal, nyaman di punggung",
+    tag: "Nyaman",
     bgGradient: "from-amber-500/10 to-earth-600/10",
     image: "/images/carrier-cat.jpg",
     accent: "bg-amber-500",
   },
   {
     name: "Sleeping Bag",
-    desc: "Hangat hingga -5°C, tebal & nyaman",
-    tag: "Thermal Tech",
+    desc: "Bahan tebal, anget, bikin tidur di gunung tetap nyenyak",
+    tag: "Anget",
     bgGradient: "from-sky-500/10 to-blue-600/10",
     image: "/images/sb-cat.jpg",
     accent: "bg-sky-500",
@@ -75,11 +74,9 @@ export default function HomePage() {
 
       {/* ================= HERO SECTION ================= */}
       <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-forest-900 via-forest-850 to-stone-900 text-white overflow-hidden py-20 lg:py-0">
-        {/* Ambient Glow Background Effect */}
         <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-forest-500/20 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-earth-500/15 rounded-full blur-[100px] pointer-events-none" />
 
-        {/* Subtle Topographical Pattern Texture */}
         <div
           className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none"
           style={{
@@ -93,41 +90,41 @@ export default function HomePage() {
             <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-1.5 rounded-full text-stone-200 text-xs tracking-wide shadow-inner animate-fade-in">
               <Compass className="w-4 h-4 text-earth-400 animate-spin-slow" />
               <span className="font-medium">
-                Basecamp Logistik Outdoor Premium Jogja
+                Tempat Sewa Alat Camping & Gunung Terlengkap di Jogja
               </span>
             </div>
 
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-black leading-[1.1] tracking-tight">
-              Eksplorasi Alam <br />
+              Nikmati Alam <br />
               <span className="bg-gradient-to-r from-earth-300 via-amber-200 to-emerald-300 bg-clip-text text-transparent">
-                Tanpa Beban Logistik
+                Tanpa Ribet Beli Alat
               </span>
             </h1>
 
             <p className="text-forest-100/80 text-base md:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
-              Sewa perlengkapan daki gunung grade-ekspedisi dengan standardisasi
-              sterilisasi ketat. Praktis, real-time stok, dan siap pakai untuk
-              petualangan hebatmu berikutnya.
+              Sewa perlengkapan naik gunung berkualitas yang dijamin bersih,
+              wangi, dan siap pakai. Tinggal pilih alatnya, cek stok online, dan
+              berangkat petualangan dengan tenang!
             </p>
 
             <div className="flex flex-wrap justify-center lg:justify-start gap-4">
               <Link
                 href="/catalog"
                 className="group bg-earth-500 hover:bg-earth-600 text-white font-semibold px-8 py-4 rounded-xl inline-flex items-center gap-2 shadow-lg shadow-earth-900/30 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0">
-                Mulai Sewa Alat
+                Lihat Katalog Alat
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <a
-                href={`https://wa.me/${wa}?text=${encodeURIComponent("Halo Admin PendakiSantuy...")}`}
+                href={`https://wa.me/${wa}?text=${encodeURIComponent("Halo Admin PendakiSantuy, mau tanya-tanya info sewa alat dong...")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white/5 border border-white/10 hover:border-white/30 text-white font-medium px-6 py-4 rounded-xl inline-flex items-center gap-2 hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
-                Konsultasi Rencana Daki
+                Tanya Admin via WA
               </a>
             </div>
           </div>
 
-          {/* Right Showcase Hero Box (Premium Aesthetic Frame) */}
+          {/* Right Showcase Hero Box */}
           <div className="lg:col-span-5 flex justify-center w-full animate-fade-in-up">
             <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 aspect-square rounded-3xl p-3 bg-gradient-to-br from-white/10 to-white/0 border border-white/10 backdrop-blur-sm shadow-2xl group">
               <div className="absolute inset-0 bg-forest-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all" />
@@ -139,10 +136,9 @@ export default function HomePage() {
                   className="object-contain p-8 transform group-hover:scale-105 duration-700 ease-out"
                   priority
                 />
-                {/* Floating Micro Badge */}
                 <div className="absolute bottom-4 left-4 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 flex items-center gap-1.5 text-[11px] font-medium tracking-wide">
                   <Flame className="w-3.5 h-3.5 text-orange-400 animate-pulse" />
-                  <span>Ready for 2026 Season</span>
+                  <span>Stok Siap Buat Weekend Ini</span>
                 </div>
               </div>
             </div>
@@ -164,17 +160,16 @@ export default function HomePage() {
       <section className="py-24 max-w-6xl mx-auto px-4 w-full">
         <div className="text-center md:text-left max-w-xl mb-16 space-y-2">
           <div className="flex items-center justify-center md:justify-start gap-1.5 text-forest-600 font-bold text-xs tracking-widest uppercase">
-            <Sparkles className="w-3.5 h-3.5 text-earth-500" /> Mengapa
-            PendakiSantuy
+            <Sparkles className="w-3.5 h-3.5 text-earth-500" /> Kenapa Pilih
+            Kami
           </div>
           <h2 className="font-display text-3xl md:text-4xl font-black text-stone-900 tracking-tight">
-            Standardisasi Manajemen Sewa Modern & Andal
+            Sewa Alat Camping Jadi Lebih Gampang & Terpercaya
           </h2>
         </div>
 
-        {/* Bento Grid Layout Integration */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Card 1: Steril Feature (Large Card) */}
+          {/* Card 1: Steril Feature */}
           <div className="md:col-span-2 bg-white border border-stone-200/60 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
             <div className="absolute -right-10 -bottom-10 w-44 h-44 bg-forest-50 rounded-full group-hover:scale-110 transition-transform duration-500 -z-0 opacity-60" />
             <div className="relative z-10 space-y-4">
@@ -183,18 +178,18 @@ export default function HomePage() {
               </div>
               <div className="space-y-2">
                 <h3 className="font-display font-bold text-xl text-stone-900">
-                  Alat Steril & Siap Pakai
+                  Pasti Bersih, Wangi & Siap Pakai
                 </h3>
                 <p className="text-stone-500 text-sm leading-relaxed max-w-md">
-                  Seluruh perlengkapan wajib melalui proses laundry desinfektan
-                  kimiawi serta inspeksi fungsi mekanikal kelayakan secara ketat
-                  sebelum diserahterimakan ke penyewa.
+                  Semua alat selalu dicuci bersih, didesinfektan, dan dicek
+                  kondisinya sebelum dikasih ke kamu. Pokoknya anti-apek dan
+                  tinggal pakai pas sampai di gunung.
                 </p>
               </div>
             </div>
             <div className="pt-6 relative z-10 flex items-center gap-2 text-xs font-semibold text-forest-600">
-              <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Garansi
-              Higienis 100%
+              <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Dijamin
+              Bersih 100%
             </div>
           </div>
 
@@ -206,16 +201,17 @@ export default function HomePage() {
               </div>
               <div className="space-y-2">
                 <h3 className="font-display font-bold text-xl text-stone-900">
-                  Live Stock Checking
+                  Cek Stok Langsung Online
                 </h3>
                 <p className="text-stone-500 text-sm leading-relaxed">
-                  Cek sisa kuantitas alat secara real-time berdasarkan integrasi
-                  kalender tanggal keberangkatanmu.
+                  Kamu bisa langsung cek sisa jumlah alat secara real-time pas
+                  milih tanggal naik gunungmu. Ga perlu tebak-tebakan lagi
+                  barangnya ready atau ga.
                 </p>
               </div>
             </div>
             <span className="text-xs font-medium text-stone-400 group-hover:text-amber-600 transition-colors pt-4 flex items-center gap-1">
-              Automated Pipeline Track <ArrowUpRight className="w-3.5 h-3.5" />
+              Sistem Stok Otomatis <ArrowUpRight className="w-3.5 h-3.5" />
             </span>
           </div>
 
@@ -227,17 +223,18 @@ export default function HomePage() {
               </div>
               <div className="space-y-2">
                 <h3 className="font-display font-bold text-xl text-stone-900">
-                  Paket Hemat Mahasiswa
+                  Harga Ramah Mahasiswa
                 </h3>
                 <p className="text-stone-500 text-sm leading-relaxed">
-                  Skema regulasi tarif transparan tanpa biaya siluman
-                  tersembunyi. Ramah di kantong mahasiswa.
+                  Harga sewa transparan, jujur, dan ga ada biaya tambahan
+                  tersembunyi yang bikin kaget di akhir. Pas banget buat kantong
+                  anak kuliahan.
                 </p>
               </div>
             </div>
             <div className="text-lg font-black text-stone-950 pt-4">
               <span className="text-xs font-normal text-stone-400 block">
-                Tarif Mulai Dari
+                Harga Mulai Dari
               </span>
               Rp 10.000
               <span className="text-xs font-normal text-stone-500">
@@ -247,24 +244,25 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Card 4: Basecamp Location Extra Card (Fills space nicely) */}
+          {/* Card 4: Basecamp Location Extra Card */}
           <div className="md:col-span-2 bg-gradient-to-r from-stone-900 to-stone-850 text-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div className="space-y-2">
               <div className="bg-white/10 px-2.5 py-0.5 rounded-md text-[10px] uppercase font-bold tracking-wider w-max text-earth-300">
-                Lokasi Strategis
+                Lokasi Basecamp
               </div>
               <h3 className="font-display font-bold text-lg">
-                Butuh Ambil Barang Langsung Ke Basecamp?
+                Mau Ambil Barang atau Cod Langsung?
               </h3>
               <p className="text-stone-400 text-xs max-w-md">
-                Terletak strategis dekat area kampus UMY, Kasihan, Bantul. Buka
-                setiap hari untuk mempermudah pengecekan fisik produk.
+                Lokasi kami sangat dekat dan strategis dari area kampus UMY,
+                Kasihan, Bantul. Buka setiap hari buat kamu yang mau cek
+                langsung kondisi barangnya.
               </p>
             </div>
             <Link
               href="/contact"
               className="bg-white text-stone-900 px-5 py-3 rounded-xl text-xs font-bold hover:bg-stone-100 transition-colors flex items-center gap-1.5 shrink-0">
-              Lihat Google Maps <ArrowRight className="w-3.5 h-3.5" />
+              Buka Google Maps <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>
@@ -278,32 +276,27 @@ export default function HomePage() {
               Kategori Terfavorit
             </h2>
             <p className="text-stone-500 text-sm">
-              Klasifikasi perlengkapan gunung tangguh yang siap temani
-              perjalanan ekspedisimu.
+              Pilihan alat gunung andalan yang paling sering disewa buat nemenin
+              muncak.
             </p>
           </div>
 
-          {/* Grid Kategori Bergaya Card Katalog Premium */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {PREMIUM_CATEGORIES.map((cat) => (
               <Link
                 key={cat.name}
                 href={`/catalog?category=${cat.name}`}
                 className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col h-full border border-stone-200/40">
-                {/* Image Placeholder Frame dengan Background Gradient */}
                 <div
                   className={`h-48 relative bg-gradient-to-br ${cat.bgGradient} flex items-center justify-center p-6 overflow-hidden`}>
-                  {/* Efek Dummy Icon atau Gambar Kustom */}
                   <div className="absolute top-4 left-4 bg-white/80 backdrop-blur-md px-2 py-0.5 rounded-md text-[10px] font-bold text-stone-700 uppercase tracking-wide">
                     {cat.tag}
                   </div>
-                  {/* Placeholder Visual Indah Minimalis pengganti Icon Lucide Lama */}
                   <div className="w-20 h-20 bg-white/60 rounded-full flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-500 ease-out">
                     <span className="text-2xl">⛰️</span>
                   </div>
                 </div>
 
-                {/* Deskripsi */}
                 <div className="p-6 flex-grow flex flex-col justify-between space-y-4">
                   <div className="space-y-1">
                     <h3 className="font-display font-bold text-xl text-stone-900 group-hover:text-forest-600 transition-colors">
@@ -314,7 +307,7 @@ export default function HomePage() {
                     </p>
                   </div>
                   <div className="flex items-center gap-1 text-xs font-bold text-forest-700 pt-2 group-hover:gap-2 transition-all">
-                    Eksplor Seri Alat <ArrowRight className="w-3.5 h-3.5" />
+                    Lihat Pilihan Alat <ArrowRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
               </Link>
@@ -325,7 +318,7 @@ export default function HomePage() {
             <Link
               href="/catalog"
               className="bg-forest-600 hover:bg-forest-700 text-white font-semibold px-8 py-3.5 rounded-xl inline-flex items-center gap-2 shadow-md transition-all duration-200 hover:-translate-y-0.5">
-              Buka Seluruh Katalog Produk <ArrowRight className="w-4 h-4" />
+              Buka Semua Katalog Produk <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
@@ -335,10 +328,11 @@ export default function HomePage() {
       <section className="py-24 max-w-6xl mx-auto px-4">
         <div className="text-center max-w-md mx-auto mb-16 space-y-2">
           <h2 className="font-display text-3xl font-black text-stone-900 tracking-tight">
-            Cerita Jurnal Pendaki
+            Kata Mereka Yang Sudah Sewa
           </h2>
           <p className="text-stone-500 text-sm">
-            Kesan otentik petualangan aman dari para mitra penjelajah kami.
+            Pengalaman langsung dari para pendaki yang udah nyobain nyamannya
+            sewa di sini.
           </p>
         </div>
 
@@ -348,7 +342,6 @@ export default function HomePage() {
               key={i}
               className="bg-white border border-stone-200/50 p-8 rounded-3xl shadow-sm flex flex-col justify-between relative group hover:shadow-md transition-shadow">
               <div className="space-y-4">
-                {/* Rating Stars Minimalis */}
                 <div className="flex gap-0.5 text-amber-400">
                   {[...Array(t.rating)].map((_, index) => (
                     <Star key={index} className="w-4 h-4 fill-current" />
@@ -388,12 +381,12 @@ export default function HomePage() {
           </div>
           <div className="space-y-3">
             <h2 className="font-display text-3xl md:text-5xl font-black tracking-tight">
-              Agenda Pendakian Sudah Dekat?
+              Rencana Naik Gunung Udah Dekat?
             </h2>
             <p className="text-stone-400 text-sm md:text-base max-w-xl mx-auto leading-relaxed font-light">
-              Jangan biarkan keterbatasan anggaran alat mematikan impian
-              petualanganmu. Amankan kuota stok sewa alat camping-mu dari
-              sekarang sebelum kehabisan slot musim pendakian!
+              Gak perlu pusing mikirin biaya beli alat baru yang mahal. Amankan
+              kuota sewa alat camping-mu sekarang sebelum kehabisan slot pas
+              musim pendakian atau weekend!
             </p>
           </div>
           <div className="flex flex-wrap justify-center gap-4 pt-2">
@@ -406,7 +399,7 @@ export default function HomePage() {
             <Link
               href="/contact"
               className="bg-white/5 border border-white/10 hover:border-white/20 text-stone-200 font-medium px-6 py-4 rounded-xl transition-all duration-200 backdrop-blur-sm">
-              Hubungi Lokasi Basecamp
+              Hubungi Basecamp
             </Link>
           </div>
         </div>
